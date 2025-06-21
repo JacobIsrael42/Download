@@ -128,6 +128,9 @@ table, th, td {
 .wideCell{
 width: 32%;
 }
+.quarterCell{
+width: 25%;
+}
 .narrowCell{
 width: 20%;
 }
@@ -140,14 +143,28 @@ ul {
 width:360px;
 }
 
+.semiTransparent{
+  background-color: rgba(0,0,0,0.3);
+}
+
 button {
   color: white;
   font-size: 36px;
   font-weight: 600;
  text-align: center;
  user-select: none;
- background-image: linear-gradient(#3000A0, #100020 70%);
 }
+.mb1{
+background-image: linear-gradient(#3000A0, #100020 70%);
+}
+
+.mb2{
+background-image: linear-gradient(#600080, #100020 70%);
+}
+.mb3{
+background-image: linear-gradient(#900030, #100020 70%);
+}
+
 .mb : active{
   color: yellow;
  background-image: linear-gradient(#ff0000, #603010 50%);
@@ -216,57 +233,57 @@ position: absolute;
 <table class="menuTable">
 <tr>
 <td valign="top">
-<button class="mb" style="width:100%" value="0" onclick="menuChoice(this)">דף הבית
+<button class="mb1" style="width:100%" value="0" onclick="menuChoice(this)">דף הבית
  </button>
 
-</td><td class="wideCell" valign="top">
+</td><td  valign="top">
 
-<button class="mb" style="width:100%"  id="productButton" value ="1" onclick="menuChoice(this)">מוצרים</button>
+<button class="mb1" style="width:100%"  id="productButton" value ="1" onclick="menuChoice(this)">מוצרים</button>
 
 </td><td valign="top">
 
-<button  class="mb" style="width:100%" value="2"  onclick="menuChoice(this)">עיצובים שלנו
+<button  class="mb1" style="width:100%" value="2"  onclick="menuChoice(this)">עיצובים שלנו
 </button>
 
 </td>
 
 <td valign="top">
 
-<button class="mb" style="width:100%" value="3" onclick="menuChoice(this)">צור קשר
+<button class="mb1" style="width:100%" value="3" onclick="menuChoice(this)">צור קשר
  </button>
 </td></tr>
 </table>
 
 <table class="subMenuTable">
 <tr>
-<td></td>
-<td class="wideCell" valign="top">
+<td> </td>
+<td id="productMenu" class="quarterCell" valign="top">
 
 <ul id="subMenu1" class="subMenu">
-<li><button class="categoryButton"  value="0" onclick="categoryChoice(this)"> הכול</button></li>
-<li><button class="categoryButton"  value="1" onclick="categoryChoice(this)"> כלי עבודה</button></li>
-<li><button class="categoryButton"  value="2" onclick="categoryChoice(this)"> חמרה</button></li>
-<li><button class="categoryButton"  value="3" onclick="categoryChoice(this)"> פירזול</button></li>
+<li><button class="mb2"  value="-1" onclick="categoryChoice(this)"> הכול</button></li>
+<li><button class="mb2"  value="0" onclick="categoryChoice(this)"> כלי עבודה</button></li>
+<li><button class="mb2"  value="1" onclick="categoryChoice(this)"> חמרה</button></li>
+<li><button class="mb2"  value="2" onclick="categoryChoice(this)"> פירזול</button></li>
 <ul>
-<li><button class="subCategoryButton"  value="0" onclick="subCategoryChoice(this)"> הכול</button></li>
-<li><button class="subCategoryButton"  value="1" onclick="subCategoryChoice(this)"> מטבח</button></li>
-<li><button class="subCategoryButton"  value="2" onclick="subCategoryChoice(this)"> אמבטיה</button></li>
-<li><button class="subCategoryButton"  value="3" onclick="subCategoryChoice(this)"> ארון</button></li>
-<li><button class="subCategoryButton"  value="4" onclick="subCategoryChoice(this)"> מחסון</button></li>
+<li><button class="mb3"  value="-1" onclick="subCategoryChoice(this)"> הכול</button></li>
+<li><button class="mb3"  value="0" onclick="subCategoryChoice(this)"> מטבח</button></li>
+<li><button class="mb3"  value="1" onclick="subCategoryChoice(this)"> אמבטיה</button></li>
+<li><button class="mb3"  value="2" onclick="subCategoryChoice(this)"> ארון</button></li>
+<li><button class="mb3"  value="3" onclick="subCategoryChoice(this)"> מחסון</button></li>
 
 </ul>
 </ul>
 </td>
-<td class="wideCell" valign="top">
+<td id="designMenu" class="quarterCell" valign="top">
 
 <ul id="subMenu2" class="subMenu">
-<li><button class="categoryButton"  value="-1" onclick="designChoice(this)"> הכול</button></li>
-<li><button class="categoryButton"  value="0" onclick="designChoice(this)"> מטבח </button></li>
-<li><button class="categoryButton"  value="1" onclick="designChoice(this)"> אמבטיה</button></li>
-<li><button class="categoryButton"  value="2" onclick="designChoice(this)"> עבודות נוספות</button></li>
+<li><button class="mb2"  value="-1" onclick="designChoice(this)"> הכול</button></li>
+<li><button class="mb2"  value="0" onclick="designChoice(this)"> מטבח </button></li>
+<li><button class="mb2"  value="1" onclick="designChoice(this)"> אמבטיה</button></li>
+<li><button class="mb2"  value="2" onclick="designChoice(this)"> עבודות נוספות</button></li>
 </ul>
 </td>
-<td></td>
+<td> </td>
 </tr>
 </table>
 
@@ -274,12 +291,18 @@ position: absolute;
 
 <div id=webPage0>
 <table class="searchTable">
+
 <tr>
 <td>
+
 <button  onclick="searchProducts()">🔎</button>
-<input type="text" id="searchInput" size="10">
+
+<input type="text" id="searchInput"  size="12" 
+autofocus><input type="text" id="fakeInput"
+onfocusin="fakeInputGotFocus(event)" style="opacity: 0;">
 </td>
 </tr>
+
 <tr>
 
 <td class="rightText2">
@@ -294,6 +317,7 @@ position: absolute;
 
 </td>
 </tr>
+
 </table>
  <br>
 <p class="centeredText1">
@@ -505,17 +529,123 @@ function menuChoice(theButton){
 
 }// end function
 
+//searchInput = document.getElementById("searchInput");
+//searchInput.addEventListener("keyup", inputKeyUp() );
+
+/**********
+inputKeyUp
+
+ let userInput = event.target.value; 
+
+***********/
+function inputKeyUp(theEvent){
+alert(theEvent);
+
+       if(theEvent){
+alert(theEvent.keyCode);
+          theEvent.preventDefault();
+     }
+
+}
+
+/****
+document.addEventListener('keydown', (event) => {
+console.log('Key down:', event.key);
+});
+****/
+
+/**********
+fakeInputGotFocus
+***********/
+function fakeInputGotFocus(theEvent){
+
+      // alert(theEvent);
+
+      theEvent.target.blur();
+      searchProducts();
+
+/*********
+theEvent.attrChange 
+theEvent.attrName theEvent.cancellable 
+
+ enter==phase 2   type==change
+ theEvent.detail theEvent.eventPhase theEvent.type 
+
+ theEvent.cancelable theEvent.currentTarget 
+ theEvent.source
+ theEvent.which
+ theEvent.keyCode
+ theEvent.origin 
+ theEvent.currentTarget theEvent.originalTarget 
+
+if theEvent.target){
+    target   theEvent.target.id
+}
+if theEvent.relatedTarget){
+ .relatedTarget    theEvent.relatedTarget.id
+}
+if theEvent.currentTarget){
+ currentTarget    theEvent.currentTarget.id
+} 
+
+ theEvent.prevValue      theEvent.newValue      theEvent.relatedNode 
+ theEvent.view 
+ theEvent.bubbles
+*********/
+}
+
+/**********
+enterKeyPressed
+ let userInput = event.target.value; 
+
+***********/
+function enterKeyPressed(theEvent){
+
+return;
+//■■■■■■
+alert(theEvent);
+alert(theEvent.relatedTarget);
+alert(theEvent.target);
+alert(theEvent.target.value);
+
+       if(theEvent){
+alert(theEvent.code);
+alert(theEvent.key);
+          theEvent.preventDefault();
+     }
+}
+
 /**********
 searchProducts
 ***********/
 function searchProducts(){
 
      let searchInput = document.getElementById("searchInput");
-let searchText = searchInput.value;
+    
+     let searchValue = searchInput.value;
+      if(! searchValue){
+          return;
+       }
 
-let searchField = document.getElementById("searchField");
+    let searchText = String(searchValue);
+     
+    searchText = searchText.trim();
+    
+      if(searchText.length == 0){
+          return; 
+       }
 
-alert(searchText +"  :  "+ searchField.value);
+       // clear input
+       searchInput.value = "";
+
+      // what item field should we search ?
+      let searchField = document.getElementById("searchField");
+
+      alert(searchText +"  :  "+ searchField.value);
+    
+      let fieldNumber = parseInt(searchField.value);
+
+      /// productSearch(searchText, fieldNumber);
 
 }// end function
 
@@ -546,42 +676,59 @@ categoryChoice
 **********/
 function categoryChoice(theButton){
 
-        alert(theButton.className);
+        //  alert(theButton.className);
+          alert(theButton.value);
+     
 
-        alert(theButton.value);
+        if(theButton == null){
+          //   failure
+              return;
+          }
+        var productIndexesFound = [];
 
-// get all the products in thus category
-// and fill the productTable
+         myChoice = parseInt(theButton.value);
+      ///  -1 means ALL
+        if(myChoice<0){  //  get all products
+          productIndexesFound = 
+getAllFromCategory(null, null);
+       }
+       else{
+         // get all the products in this category
+         // and fill the productTable
    
-    productIndexesFound = 
-getAllFromCategory(theButton.value, null);
+             productIndexesFound = 
+getAllFromCategory(myChoice, null);
+     }
 
-    if(productIndexesFound == null || productIndexesFound.length == 0){
+ 
+
+       if(productIndexesFound == null || productIndexesFound.length == 0){
          return;
        }
      
-     let productTable = document.getElementById("productTable");
+        let productTable = document.getElementById("productTable");
 
        //___first Empty the table______
     
-   //___now, fill the table with values from the search______
+
+       //___now, fill the table with values from the search______
 
      let jEnd = productIndexesFound.length;
  
-   for (let j = 0; j < jEnd; j++) { 
+     for (let j = 0; j < jEnd; j++) { 
         
-     let newRow = document.createElement('tr');    
-     let newCell = document.createElement('td'); 
+          let newRow = document.createElement('tr');    
+          let newCell = document.createElement('td'); 
 
        //_____Add the Cell text & format
-       newCell.innerHTML  = createProductHTML(productIndexesFound[j]);
+          newCell.innerHTML = createProductHTML(productIndexesFound[j]);
         
-       newCell.className = "rightText2";
+          newCell.className = "rightText2";
 
-       newRow.appendChild(newCell);
-       productTable.appendChild(newRow);
+          newRow.appendChild(newCell);
+          productTable.appendChild(newRow);
 
-  }// loop
+     }// loop
 
         closeMenu(1);
         goToPage(PRODUCT_PAGE_INDEX);
@@ -598,6 +745,21 @@ function subCategoryChoice(theButton){
         // alert(theButton.value);
         closeMenu(1);
         goToPage(PRODUCT_PAGE_INDEX);
+
+      if(theButton == null){
+          //   failure
+           return;
+       }
+
+      myChoice = parseInt(theButton.value);
+      ///  -1 means ALL
+      if(myChoice<0){
+
+      }
+      else{
+
+     }
+  
 
 }// end function
 
@@ -646,16 +808,46 @@ function openMenu(selection){
      if(subMenu){
           subMenu.style.display = "block";
        }
-  }// end function
+
+     var menuName = "";
+
+    if(selection==1){
+        menuName = "productMenu";
+      }
+     else if(selection==2){
+         menuName = "designMenu";
+     }
+     let menuToOpen = document.getElementById(menuName);
+
+    if(menuToOpen){
+        menuToOpen.classList.add("semiTransparent"); 
+    }
+
+ }// end function
 
 /************
 closeMenu
 **********/
 function closeMenu(selection){
      
-subMenu = document.getElementById("subMenu" + selection);
+     subMenu = document.getElementById("subMenu" + selection);
      if(subMenu){
           subMenu.style.display = "none";
+       }
+
+     var menuName = "";
+
+      if(selection==1){
+          menuName = "productMenu";
+       }
+       else if(selection==2){
+          menuName = "designMenu";
+       }
+       let menuToClose = document.getElementById(menuName);
+
+    if(menuToClose){
+       menuToClose.classList.remove("semiTransparent");
+      // div.classList.add("semiTransparent"); 
        }
       
 }// end function
@@ -712,7 +904,7 @@ function productSearch(inputString, fieldNumber){
       if(inputString == null){
         return null;
       }
-      inputString.trim();
+      inputString = inputString.trim();
       if(inputString.length < 1){
         return null;
       }
@@ -820,12 +1012,14 @@ getAllFromCategory
 ******************/
 function getAllFromCategory(category, subcategory){
       if(category == null){
-        return null;
+        category = "";
       }
       category = category.trim().toLowerCase();
     
+      useCategory = true;
+
       if(category.length == 0){
-           return null;
+           useCategory = false;
       }
      
      useSubcategory = false;
@@ -840,7 +1034,6 @@ function getAllFromCategory(category, subcategory){
        }
    
      let searchableItemsLength = SEARCHABLE_ITEMS.length;
-
        
       outputArray = newArray();
       //___Find matches____        
@@ -852,7 +1045,7 @@ function getAllFromCategory(category, subcategory){
 
           myCategory = itemSplit[CATEGORY_INDEX].toLowerCase();
 
-    if( ! myCategory.equals(category) ){
+          if(useCategory && myCategory.equals(category) == false){
                   continue;
              }
 
